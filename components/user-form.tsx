@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { api } from "@/lib/axios"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { User, Mail, Lock, Phone, Building2, CheckCircle2, Loader2 } from "lucide-react"
@@ -14,10 +15,11 @@ export function UserForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [formData, setFormData] = useState({
-    firstName: "",
+    name: "",
     email: "",
     edad: "",
   })
+
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -37,7 +39,7 @@ export function UserForm() {
     setTimeout(() => {
       setIsSuccess(false)
       setFormData({
-        firstName: "",
+        name: "",
       
         email: "",
        edad:"",
@@ -81,15 +83,15 @@ export function UserForm() {
             <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Información Personal</h4>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="firstName">Nombre</Label>
+                <Label htmlFor="name">Nombre</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
                   <Input
-                    id="firstName"
+                    id="name"
                     placeholder=""
                     className="pl-10 h-11 bg-muted/50 border-0 focus-visible:bg-background focus-visible:ring-2"
-                    value={formData.firstName}
-                    onChange={(e) => handleInputChange("firstName", e.target.value)}
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
                     required
                   />
                 </div>
